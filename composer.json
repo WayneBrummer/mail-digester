@@ -1,0 +1,48 @@
+{
+    "name": "waynebrummer/mail-digester",
+    "description": "Will send a summarized email based on notification data attribute.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "keywords": [
+        "laravel",
+        "digester",
+        "commands",
+        "console",
+        "notifications",
+        "mail"
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/database": "~5.0|~6.0|~7.0",
+        "illuminate/console": "~5.0|~6.0|~7.0",
+        "illuminate/support": "~5.0|~6.0|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.0",
+        "orchestra/testbench": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pace\\MailDigester\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pace\\MailDigester\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Pace\\MailDigester\\ServiceProvider"
+            ]
+        }
+    }
+}
