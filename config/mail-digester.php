@@ -7,7 +7,8 @@ return [
     /*
      * The frequency in which the summary can build up too.
      * ['daily', 'weekly', 'monthly']
-     * * Please note the using the monthly summary will incur a large email string.
+     * * Please note the using the monthly/weekly summary will incur a large email string.
+     * * * Unless limited is set.
     */
     'frequency' => ['daily'],
     /*
@@ -46,4 +47,9 @@ return [
      * Build a new Listener to capture the event to do custom stuff.
      */
     'send_digest_notification' => true,
+    /*
+     * Identifier for middleware routes.
+     * Can be overwritten.
+     */
+    'identifier' => 'notification_id',
 ];

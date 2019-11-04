@@ -10,6 +10,8 @@ class Notification extends Model
 {
     use Notifiable;
 
+    protected $fillable = ['read_at'];
+
     public function sendMailDigesterNotification($user)
     {
         $user->notify(new MailDigestNotification($user));

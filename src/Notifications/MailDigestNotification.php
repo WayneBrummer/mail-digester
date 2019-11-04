@@ -46,8 +46,6 @@ class MailDigestNotification extends Notification
 
         $notificationsUrl = route('notifications.index');
 
-        // dd(\compact('notifications'));
-
         return (new MailMessage())
             ->subject("Mail Digest: {$user->first_name} {$user->last_name},")
             ->greeting("Hello {$user->first_name} {$user->last_name} ")

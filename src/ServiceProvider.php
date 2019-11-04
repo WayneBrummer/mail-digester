@@ -5,6 +5,7 @@ namespace Pace\MailDigester;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Pace\MailDigester\Console\SendUnreadDigest;
+use Pace\MailDigester\Http\Middleware\NotificationMiddleware;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
@@ -51,6 +52,8 @@ class ServiceProvider extends IlluminateServiceProvider
                 }
             }
         });
+
+        app('router')->aliasMiddleware('notification-middleware', NotificationMiddleware::class);
     }
 
     /**

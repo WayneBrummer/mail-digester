@@ -20,7 +20,7 @@ php artisan vendor:publish --provider="Pace\MailDigester\ServiceProvider"
 
 ---
 
-## Usage
+## Usage Config
 
 Once installed, it will collect all unread emails from the notifications table.
 
@@ -38,6 +38,19 @@ The following config options are available in `config/mail-digester.php`:
   - `monthly` will use `1` , `2` etc `last_day`
 
 - **mark_read**: Will automatically update the unread status of the mail once the summary mail has been sent.
+
+---
+
+## Usage Middleware
+
+Padding the `config` requested middleware id a lot with the
+notification id will render the notification read.
+
+`identifier`
+
+''
+{url}/notification_id={notification_id}
+''
 
 ---
 
