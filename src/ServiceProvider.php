@@ -46,7 +46,7 @@ class ServiceProvider extends IlluminateServiceProvider
                     $frequency .= ($frequency !== 'daily') ? 'On' : '';
                     $occurrence = ($frequency !== 'daily') ? $config['occurrence'] : null;
 
-                    $schedule->command('digest:unread')
+                    $schedule->command('mail-digest:unread')
                         ->{$frequency}($occurrence)
                         ->at($config['at']);
                 }
