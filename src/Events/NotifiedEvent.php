@@ -20,11 +20,11 @@ class NotifiedEvent
     public $notification;
 
     /**
-     * Undocumented function.
+     * Notification UUID string to make as read.
      *
-     * @param object $user
+     * @param string $notification
      */
-    public function __construct(object $notification)
+    public function __construct(string $notification)
     {
         $this->notification = $notification;
     }

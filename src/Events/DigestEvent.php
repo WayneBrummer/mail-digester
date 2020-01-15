@@ -21,11 +21,9 @@ class DigestEvent
     public $user;
 
     /**
-     * Undocumented function.
-     *
-     * @param object $user
+     * Contains user information/models.
      */
-    public function __construct(object $user)
+    public function __construct($user)
     {
         $this->user = $user;
     }
