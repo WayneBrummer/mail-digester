@@ -13,7 +13,9 @@ class Digester
     public function __construct($userId)
     {
         $this->userId = $userId;
-        $this->sendDigest();
+        if (\config('mail-digester.enabled', false)) {
+            $this->sendDigest();
+        }
     }
 
     /** Set users object up for transference. */
@@ -52,10 +54,6 @@ class Digester
 
                 dispatch($dispatchJob);
             }
-
-            // if (config('mail-digester.mark_read', false)) {
-            //     $user->unreadNotifications()->markAsRead();
-            // }
         }
     }
 }

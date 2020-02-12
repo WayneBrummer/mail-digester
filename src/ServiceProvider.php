@@ -17,7 +17,6 @@ class ServiceProvider extends IlluminateServiceProvider
     public function register()
     {
         $this->registerCommands();
-        $this->app->register(EventServiceProvider::class);
     }
 
     public function registerCommands()
