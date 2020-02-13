@@ -10,6 +10,11 @@ class Digester
 
     private $users;
 
+    /**
+     * The primary use case for this packages is to get summary notifications.
+     *
+     * @param null|int $userId
+     */
     public function __construct($userId)
     {
         $this->userId = $userId;
@@ -18,7 +23,11 @@ class Digester
         }
     }
 
-    /** Set users object up for transference. */
+    /**
+     * Set users object up for transference.
+     * This will ethier use the sigle user id specifed or all users who have un-read
+     * notifications.
+     */
     public function setUsers()
     {
         $userId = $this->userId;
@@ -32,7 +41,7 @@ class Digester
         })->get();
     }
 
-    /** Retrieves Users if not already set */
+    /** Retrieves Users if not already set. */
     public function getUsers()
     {
         if (empty($this->users)) {
@@ -46,13 +55,14 @@ class Digester
         $this->dispatchDigestNotification();
     }
 
-    private function dispatchDigestNotification()
+    /**
+     * dispatched the job to send the notification.
+     */
+    private function dispatchDigestNotification() : void
     {
         foreach ($this->users as $user) {
             if (!$user->unreadNotifications->isEmpty()) {
-                $dispatchJob = (new SendUnreadDigestJob($user));
-
-                dispatch($dispatchJob);
+                dispatch((new SendUnreadDigestJob($user)));
             }
         }
     }

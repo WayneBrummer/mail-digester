@@ -1,30 +1,31 @@
 @component('mail::message')
-#Hello {{$user->first_name}},
+{{-- Greeting --}}
 
-<p>Here is your digest of unread notification(s).</p>
-@foreach ($notifications as $notification)
+@if (! empty($greeting))
+# {{ $greeting }}
+@endif
 
-<p>
-    <strong>{{ $notification->action }}</strong>
-</p>
+{{ __("Here's what you missed:") }}
+<br>
+{{ __('Notifications') }}
+@component('mail::table')
+@foreach ($user->unreadNotifications as $notify)
+@php
+$mode = $notify->data['model_object'];
+$noti = $notify->data['url']. '?notification_id='. $notify->id;
+@endphp
 
-<p>
-    <a href="{{ $notification->url }}">
-        <strong>{{ $notification->model_object['name'] }}</strong>
-    </a>
-</p>
-
-<p>{{ $notification->model_object['description'] }}</p>
-
-<small>
-    Created <strong>
-        {{ \Carbon\Carbon::parse($notification->model_object['created_at'])->diffForHumans() }}
-    </strong>
-</small>
-
-<hr/>
+| {{ $mode['name'] }} |
+| - |
+| [{{ $mode['description'] }}]({{ url($noti) }}) |
 @endforeach
+@endcomponent
 
-Thanks,<br>
+@component('mail::button', ['url' => $url , 'color' => 'primary'])
+{{ __('See all notifications') }}
+@endcomponent
+
+@lang('Regards'),<br>
 {{ config('app.name') }}
+
 @endcomponent

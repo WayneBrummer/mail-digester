@@ -6,7 +6,6 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Pace\MailDigester\Models\Notification as Digest;
 
 /**
  * Used so that the user has the choice to add listeners to pull the digest if that want.
