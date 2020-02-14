@@ -5,29 +5,6 @@ return [
     'enabled' => true,
 
     /*
-     * The frequency in which the summary can build up too.
-     * ['daily', 'weekly', 'monthly']
-     * * Please note the using the monthly/weekly summary will incur a large email string.
-     * * * Unless limited is set.
-    */
-    'frequency' => ['daily'],
-    /*
-     * The time at which the email will be sent.
-     * Format of requested time is 'hh:mm'
-     * Required attribute format is hh:mm
-     */
-    'at' => '16:00',
-    /*
-     * In case of weekly or monthly.
-     * Format of integer is required.
-     * =========================================================================
-     * Daily will be null as it will listen to the 'at' attribute.
-     * Weekly goes up to 7.
-     * Monthly goes up to 28. and then `last_day` may be used.
-     */
-    'occurrence' => null,
-
-    /*
      * Should mark summarized emails as read if digest mail is sent.
      * This will be preformed at the same time the 'digest' is
      * sent so it may have a bit of overhead.

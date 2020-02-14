@@ -2,7 +2,6 @@
 
 namespace Pace\MailDigester;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Pace\MailDigester\Console\SendUnreadDigest;
 use Pace\MailDigester\Http\Middleware\NotificationMiddleware;
@@ -42,10 +41,6 @@ class ServiceProvider extends IlluminateServiceProvider
             $this->configure();
             $this->publishViews();
         }
-        $this->app->booted(function () {
-            $this->triggerSceduleAction($this->app->make(Schedule::class));
-        });
-
         app('router')->aliasMiddleware('notification-middleware', NotificationMiddleware::class);
     }
 
@@ -71,23 +66,5 @@ class ServiceProvider extends IlluminateServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/views/mails' => resource_path('views/mails'),
         ]);
-    }
-
-    private function triggerSceduleAction($schedule)
-    {
-        foreach (config('mail-digester.frequency', ['daily']) as $frequency) {
-            //In array of accepted frequency
-            if (\in_array($frequency, self::FREQUENCY, true)) {
-                $occurrence = null;
-                if (!\in_array($frequency, ['daily'], true)) {
-                    $frequency  = 'On';
-                    $occurrence = config('mail-digester.occurrence', null);
-                }
-
-                $schedule->command('mail-digest:unread')
-                    ->{$frequency}($occurrence)
-                    ->at(config('mail-digester.at', '16:00'));
-            }
-        }
     }
 }
